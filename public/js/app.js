@@ -22,7 +22,7 @@ const CONFIG = {
     MANGAS_PER_PAGE: 8,
     ANIMATION_DELAY: 100,
     SCROLL_THRESHOLD: 100,
-    DATA_URL: 'data/mangas.json'
+    DATA_URL: 'public/data/mangas.json'
 };
 
 const state = {
