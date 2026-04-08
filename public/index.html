@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OtakuVerse - Votre univers manga ultime. Découvrez le classement des meilleurs mangas, les tendances et gérez vos favoris">
+    <meta name="theme-color" content="#0a0e14">
+    <title>OtakuVerse | Votre Univers Manga</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Chargement de votre univers manga...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                </svg>
+                <span>Otaku<span style="color: var(--accent-orange)">Verse</span></span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active" data-section="home">Accueil</a></li>
+                    <li><a href="#top-mangas" class="nav-link" data-section="top-mangas">Top Mangas</a></li>
+                    <li><a href="#trending" class="nav-link" data-section="trending">Tendances</a></li>
+                    <li><a href="#favorites" class="nav-link" data-section="favorites">Favoris</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-background">
+                <div class="hero-gradient"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Bienvenue dans <span class="title-accent">OtakuVerse</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Votre univers manga ultime. Explorez les classements, suivez les tendances et construisez votre collection de favoris.
+                </p>
+                <div class="search-container">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un manga...">
+                        <button class="search-clear" id="searchClear" aria-label="Effacer la recherche">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalMangas">0</span>
+                        <span class="stat-label">Mangas</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="totalGenres">0</span>
+                        <span class="stat-label">Genres</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="totalFavorites">0</span>
+                        <span class="stat-label">Favoris</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section class="filters-section" id="filters">
+            <div class="container">
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label class="filter-label">Genre</label>
+                        <select class="filter-select" id="genreFilter">
+                            <option value="all">Tous les genres</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Trier par</label>
+                        <select class="filter-select" id="sortFilter">
+                            <option value="popularity">Popularité</option>
+                            <option value="rating">Note</option>
+                            <option value="title">Titre (A-Z)</option>
+                            <option value="year">Année</option>
+                            <option value="chapters">Chapitres</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Statut</label>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="all">Tous</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Terminé">Terminé</option>
+                            <option value="En pause">En pause</option>
+                        </select>
+                    </div>
+                    <button class="filter-reset" id="resetFilters">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Réinitialiser
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Mangas Section -->
+        <section class="section" id="top-mangas">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                        </svg>
+                        Top Mangas
+                    </h2>
+                    <p class="section-subtitle">Les mangas les mieux notés par notre communauté</p>
+                </div>
+                <div class="manga-grid" id="topMangaGrid">
+                    <!-- Mangas will be inserted here -->
+                </div>
+                <div class="load-more-container">
+                    <button class="load-more-btn" id="loadMoreBtn">
+                        Charger plus
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="empty-state hidden" id="emptyState">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M8 15s1.5 2 4 2 4-2 4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="9" cy="9" r="1" fill="currentColor"/>
+                        <circle cx="15" cy="9" r="1" fill="currentColor"/>
+                    </svg>
+                    <h3>Aucun résultat trouvé</h3>
+                    <p>Essayez de modifier vos filtres ou votre recherche</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Section -->
+        <section class="section trending-section" id="trending">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor"/>
+                        </svg>
+                        Tendances
+                    </h2>
+                    <p class="section-subtitle">Les mangas qui font le buzz en ce moment</p>
+                </div>
+                <div class="trending-slider" id="trendingSlider">
+                    <!-- Trending mangas will be inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section class="section favorites-section" id="favorites">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>
+                        </svg>
+                        Mes Favoris
+                    </h2>
+                    <p class="section-subtitle">Votre collection personnelle de mangas</p>
+                </div>
+                <div class="manga-grid" id="favoritesGrid">
+                    <!-- Favorite mangas will be inserted here -->
+                </div>
+                <div class="empty-state" id="emptyFavorites">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Aucun favori pour le moment</h3>
+                    <p>Cliquez sur le cœur d'un manga pour l'ajouter à vos favoris</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Manga Detail Modal -->
+    <div class="modal" id="mangaModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content" id="modalContent">
+            <button class="modal-close" id="modalClose" aria-label="Fermer">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                        </svg>
+                        <span>Otaku<span style="color: var(--accent-orange)">Verse</span></span>
+                    </a>
+                    <p class="footer-description">
+                        Votre univers manga ultime pour decouvrir et suivre les meilleurs mangas du monde entier.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#home">Accueil</a></li>
+                            <li><a href="#top-mangas">Top Mangas</a></li>
+                            <li><a href="#trending">Tendances</a></li>
+                            <li><a href="#favorites">Favoris</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Genres Populaires</h4>
+                        <ul>
+                            <li><a href="#" data-genre="Action">Action</a></li>
+                            <li><a href="#" data-genre="Aventure">Aventure</a></li>
+                            <li><a href="#" data-genre="Comédie">Comédie</a></li>
+                            <li><a href="#" data-genre="Drame">Drame</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OtakuVerse. Projet academique - Tous droits reserves.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
